@@ -3,7 +3,11 @@ from models import db
 from flask_migrate import Migrate
 import os
 
-app = Flask(__name__, template_folder="templates")
+app = Flask(
+    __name__,
+    template_folder="templates",
+    static_folder="static"
+)
 
 # 🔐 Secret key
 app.config['SECRET_KEY'] = 'secret123'
