@@ -1,0 +1,56 @@
+<div class="job searchable-job"
+     draggable="true"
+     data-id="{{ job.id }}">
+
+    <div class="job-left">
+
+        <h3>
+    <a href="/job/{{ job.id }}" class="company-link">
+        {{ job.company }}
+    </a>
+      </h3>
+
+        <p>{{ job.role }}</p>
+
+        <div class="job-info">
+            <span>📍 {{ job.location }}</span>
+            <span>💼 {{ job.work_type }}</span>
+            <span>💰 {{ job.salary }}</span>
+        </div>
+
+    </div>
+
+    <div class="job-right">
+
+        <span class="tag {{ job.status }}" data-status>
+            {{ job.status }}
+        </span>
+
+        <span class="priority {{ job.priority }}">
+            {{ job.priority }}
+        </span>
+
+        
+
+        <div class="job-actions">
+
+            <a href="/edit-job/{{ job.id }}"
+               class="edit-btn">
+               Edit
+            </a>
+
+            <form action="/delete-job/{{ job.id }}"
+                  method="POST"
+                  onsubmit="return confirmDelete()">
+
+                <button class="delete-btn">
+                    Delete
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

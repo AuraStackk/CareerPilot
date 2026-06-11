@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Job | CareerPilot</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #0b1220;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            width: 400px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            background: #38bdf8;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Add Job 🚀</h2>
+
+    <form method="POST">
+
+        <input name="company" placeholder="Company" required>
+        <input name="role" placeholder="Role" required>
+
+        <select name="status">
+            <option>Applied</option>
+            <option>Interview</option>
+            <option>Rejected</option>
+        </select>
+
+        <select name="priority">
+
+    <option>High</option>
+    <option selected>Medium</option>
+    <option>Low</option>
+
+</select>
+
+        <input name="salary" placeholder="Salary">
+        <input name="location" placeholder="Location">
+
+        <select name="work_type">
+            <option>Remote</option>
+            <option>Onsite</option>
+        </select>
+
+        <input name="notes" placeholder="Notes">
+
+        <button type="submit">Add Job</button>
+    </form>
+
+</div>
+
+</body>
+</html>

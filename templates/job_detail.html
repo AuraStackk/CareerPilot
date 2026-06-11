@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{ job.company }} | CareerPilot</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+
+<body class="detail-layout">
+
+<div class="main">
+
+    <div class="card detail-card">
+
+        <h1>{{ job.company }}</h1>
+
+        <div class="activity-item">
+            <strong>Applied On:</strong>
+            {{ job.created_at.strftime('%d %b %Y') }}
+        </div>
+
+        <div class="activity-item">
+            <strong>Role:</strong>
+            {{ job.role }}
+        </div>
+
+        <div class="activity-item">
+            <strong>Status:</strong>
+            {{ job.status }}
+        </div>
+
+        <div class="activity-item">
+            <strong>Priority:</strong>
+            {{ job.priority }}
+        </div>
+
+        <div class="activity-item">
+            <strong>Salary:</strong>
+            {{ job.salary }}
+        </div>
+
+        <div class="activity-item">
+            <strong>Location:</strong>
+            {{ job.location }}
+        </div>
+
+        <div class="activity-item">
+            <strong>Work Type:</strong>
+            {{ job.work_type }}
+        </div>
+
+        <div class="activity-item">
+            <strong>Notes:</strong><br>
+            {{ job.notes }}
+        </div>
+
+        <div class="detail-actions">
+
+            <a href="/dashboard"
+               class="header-btn secondary-btn">
+                ← Back
+            </a>
+
+            <a href="/edit-job/{{ job.id }}"
+               class="header-btn">
+                ✏️ Edit
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CareerPilot • Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+</head>
+
+<body class="dashboard-layout">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>🚀 CareerPilot</h2>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+
+        {% for message in messages %}
+
+        <div class="flash-message">
+            {{ message }}
+        </div>
+
+        {% endfor %}
+
+    {% endif %}
+{% endwith %}
+
+<div class="header">
+
+    <div>
+        <h2 class="gradient-title">
+            Welcome, {{ username }} 👋
+        </h2>
+
+        <div class="quick-stats">
+
+    <div class="quick-pill">
+        📄 {{ total_jobs }} Applications
+    </div>
+
+    <div class="quick-pill">
+        🎯 {{ interview_jobs }} Interviews
+    </div>
+
+    <div class="quick-pill">
+        📈 {{ interview_rate }}% Success
+    </div>
+
+</div>
+
+        <p class="subtitle">
+            Track applications, interviews & career growth.
+        </p>
+        <p class="dashboard-message">
+         {{ dashboard_message }}
+       </p>
+    </div>
+
+    <div class="header-actions">
+
+        <a href="/add-job" class="header-btn">
+            + Add Job
+        </a>
+
+        <a href="/upload-resume" class="header-btn secondary-btn">
+            Resume ATS
+        </a>
+
+        <a href="/export-csv" class="header-btn secondary-btn">
+          📄 Export CSV
+        </a>
+
+        <div class="theme-btn" onclick="toggleTheme()">
+            🌙
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SEARCH -->
+<form class="search" method="GET" action="/dashboard">
+
+    <input
+    type="text"
+    name="search"
+    id="liveSearch"
+    placeholder="Search jobs..."
+>
+
+    <select name="status" id="filterStatus">
+        <option value="">All Status</option>
+        <option>Applied</option>
+        <option>Interview</option>
+        <option>Rejected</option>
+    </select>
+
+    <select name="work_type">
+        <option value="">Work Type</option>
+        <option>Remote</option>
+        <option>Hybrid</option>
+        <option>Onsite</option>
+    </select>
+
+    <input
+        type="text"
+        name="location"
+        placeholder="Location"
+    >
+
+    <button type="submit">
+        Filter
+    </button>
+
+</form>
+<!-- STATS -->
+<div class="grid">
+
+    <div class="card stat-card total-card">
+        <span>💼</span>
+        <p>Total Jobs</p>
+        <h2>{{ total_jobs }}</h2>
+    </div>
+
+    <div class="card stat-card applied-card">
+        <span>📨</span>
+        <p>Applied</p>
+        <h2>{{ applied_jobs }}</h2>
+    </div>
+
+    <div class="card stat-card interview-card">
+        <span>🎯</span>
+        <p>Interview</p>
+        <h2>{{ interview_jobs }}</h2>
+    </div>
+
+    <div class="card stat-card rejected-card">
+        <span>❌</span>
+        <p>Rejected</p>
+        <h2>{{ rejected_jobs }}</h2>
+    </div>
+
+    <div class="card stat-card rate-card">
+        <span>📈</span>
+        <p>Interview Rate</p>
+        <h2>{{ interview_rate }}%</h2>
+    </div>
+
+    <div class="card stat-card">
+    <p>📄 Resume ATS</p>
+    <h2>{{ resume_score }}</h2>
+   </div>
+
+</div>
+
+<div class="card progress-card">
+
+    <h3>🎯 Monthly Goal</h3>
+
+    <p>
+        {{ total_jobs }} / {{ monthly_goal }}
+        Applications
+    </p>
+
+    <div class="progress-bar">
+
+        <div
+            class="progress-fill"
+            style="width: {{ goal_progress }}%;">
+        </div>
+
+    </div>
+
+    <p>{{ goal_progress }}%</p>
+
+</div>
+<!-- CHARTS -->
+<div class="charts">
+    <div class="card"><canvas id="statusChart"></canvas></div>
+    <div class="card"><canvas id="trendChart"></canvas></div>
+</div>
+
+<!-- INSIGHTS -->
+
+<div class="card insights-card">
+
+    <h3>📊 Career Insights</h3>
+
+    {% for insight in insights %}
+
+        <div class="insight-item">
+            {{ insight }}
+        </div>
+
+    {% endfor %}
+
+</div>
+
+<!-- RECENT ACTIVITY -->
+
+<div class="card activity-card">
+
+    <h3>⚡ Recent Activity</h3>
+
+    {% for job in recent_jobs %}
+
+        <div class="activity-item">
+
+            <strong>{{ job.company }}</strong>
+
+            applied for
+
+            <strong>{{ job.role }}</strong>
+
+            • {{ job.status }}
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+<!-- AI INSIGHTS -->
+
+<div class="card insights-card">
+
+    <h3>🧠 AI Career Insights</h3>
+
+    <div class="insight-item">
+        Most applications:
+        <strong>{{ applied_jobs }}</strong>
+    </div>
+
+    <div class="insight-item">
+        Interview success rate:
+        <strong>{{ interview_rate }}%</strong>
+    </div>
+
+    <div class="insight-item">
+        Total tracked jobs:
+        <strong>{{ total_jobs }}</strong>
+    </div>
+
+    {% if interview_rate >= 50 %}
+
+    <div class="insight-good">
+        🚀 Strong interview performance this month.
+    </div>
+
+    {% else %}
+
+    <div class="insight-bad">
+        ⚡ Improve resume & portfolio for better conversions.
+    </div>
+
+    {% endif %}
+
+</div>
+
+
+<!-- JOB LIST -->
+<div id="jobList">
+{% if jobs|length == 0 %}
+
+<div class="card empty-state">
+    <h2>🚀 No Jobs Yet</h2>
+    <p>
+        Start tracking your applications and build your career dashboard.
+    </p>
+</div>
+
+{% endif %}
+<div class="kanban-board">
+
+    <!-- APPLIED -->
+    <div class="kanban-column"
+     id="Applied">
+
+        <h2>📨 Applied</h2>
+        <div class="empty-column">
+           Drop jobs here
+        </div>
+
+        {% for job in jobs %}
+            {% if job.status == "Applied" %}
+
+            {% include "job_card.html" %}
+
+            {% endif %}
+        {% endfor %}
+        
+
+    </div>
+
+
+
+    <!-- INTERVIEW -->
+    <div class="kanban-column"
+     id="Interview">
+
+        <h2>🎯 Interview</h2>
+        <div class="empty-column">
+          Drop jobs here
+        </div>
+
+        {% for job in jobs %}
+            {% if job.status == "Interview" %}
+
+           {% include "job_card.html" %}
+
+            {% endif %}
+        {% endfor %}
+        
+
+    </div>
+
+
+
+    <!-- REJECTED -->
+    <div class="kanban-column"
+     id="Rejected">
+
+        <h2>❌ Rejected</h2>
+        <div class="empty-column">
+         Drop jobs here
+        </div>
+
+        {% for job in jobs %}
+            {% if job.status == "Rejected" %}
+
+            {% include "job_card.html" %}
+
+            {% endif %}
+        {% endfor %}
+
+
+    </div>
+    </div>
+    </div>
+
+<!-- FLOAT BUTTON -->
+<a href="/add-job" class="fab">
+    +
+</a>
+
+
+<!-- DATA SAFE -->
+<script id="chart-data" type="application/json">
+{
+"status": {{ [applied_jobs, interview_jobs, rejected_jobs] | tojson }},
+"months": {{ months | tojson }},
+"trend": {{ applications | tojson }}
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
