@@ -919,3 +919,76 @@ box-shadow:
 .detail-layout{
     display:block;
 }
+
+/* ===== MOBILE ===== */
+
+.menu-btn{
+    display:none;
+}
+
+@media (max-width:768px){
+
+    .menu-btn{
+        display:block;
+        position:fixed;
+        top:15px;
+        left:15px;
+        z-index:9999;
+        background:#38bdf8;
+        color:white;
+        border:none;
+        padding:10px 14px;
+        border-radius:10px;
+        font-size:20px;
+        cursor:pointer;
+    }
+
+    .sidebar{
+        position:fixed;
+        left:-260px;
+        top:0;
+        width:250px;
+        height:100vh;
+        z-index:999;
+        transition:.3s;
+    }
+
+    .sidebar.show{
+        left:0;
+    }
+
+    .main-content{
+        margin-left:0 !important;
+        width:100%;
+        padding:70px 15px 15px;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .action-buttons{
+        flex-direction:column;
+    }
+
+    .action-buttons a,
+    .action-buttons button{
+        width:100%;
+    }
+
+    .stats{
+        flex-direction:column;
+    }
+
+    .charts-grid{
+        grid-template-columns:1fr;
+    }
+
+    .kanban-board{
+        flex-direction:column;
+    }
+
+    .kanban-column{
+        min-width:100%;
+    }
+}

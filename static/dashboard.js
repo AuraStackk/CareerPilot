@@ -267,3 +267,8 @@ setTimeout(() => {
     }
 
 }, 3000);
+
+function toggleSidebar() {
+    document.querySelector(".sidebar").classList.toggle("show");
+}
+
