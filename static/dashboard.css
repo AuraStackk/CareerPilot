@@ -957,10 +957,10 @@ box-shadow:
         left:0;
     }
 
-    .main-content{
-        margin-left:0 !important;
-        width:100%;
-        padding:70px 15px 15px;
+    .main{
+    margin-left:0 !important;
+    width:100% !important;
+    padding:70px 15px 15px;
     }
 
     .hero h1{
@@ -976,19 +976,20 @@ box-shadow:
         width:100%;
     }
 
-    .stats{
-        flex-direction:column;
-    }
+    .grid{
+    grid-template-columns:repeat(2,1fr);
+}
 
-    .charts-grid{
-        grid-template-columns:1fr;
-    }
+.charts{
+    grid-template-columns:1fr;
+}
 
-    .kanban-board{
-        flex-direction:column;
-    }
+.kanban-board{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+}
 
-    .kanban-column{
-        min-width:100%;
-    }
+.kanban-column{
+    min-width:280px;
+}
 }
