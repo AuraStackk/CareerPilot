@@ -990,13 +990,17 @@ box-shadow:
 }
 
 .kanban-board{
+    display:flex;
     flex-wrap:nowrap;
     overflow-x:auto;
-}
+    gap:15px;
+    padding-bottom:10px;
+ }
 
 .kanban-column{
-    flex:0 0 360px;
-}
+    flex:0 0 320px;
+    min-width:320px;
+ }
 
 .kanban-column h2{
     position:sticky;
