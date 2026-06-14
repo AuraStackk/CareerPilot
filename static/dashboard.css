@@ -283,6 +283,11 @@ body{
         0 8px 20px rgba(0,0,0,0.15);
 
     animation: fadeUp .5s ease forwards;
+
+    border-left:4px solid transparent;
+    background:
+    linear-gradient(var(--card),var(--card)) padding-box,
+    linear-gradient(180deg,#38bdf8,#0ea5e9) border-box;
 }
 
 .job:active{
@@ -985,11 +990,34 @@ box-shadow:
 }
 
 .kanban-board{
-    overflow-x:auto;
     flex-wrap:nowrap;
+    overflow-x:auto;
 }
 
 .kanban-column{
-    min-width:280px;
+    flex:0 0 360px;
+}
+
+.kanban-column h2{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:var(--card);
+    padding-bottom:10px;
+}
+
+.kanban-board{
+    overflow-x:auto;
+    padding-bottom:10px;
+    scroll-behavior:smooth;
+}
+
+.kanban-board::-webkit-scrollbar{
+    height:6px;
+}
+
+.kanban-board::-webkit-scrollbar-thumb{
+    background:#38bdf8;
+    border-radius:999px;
 }
 }
