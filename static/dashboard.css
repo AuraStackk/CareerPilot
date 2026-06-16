@@ -1009,7 +1009,8 @@ box-shadow:
     } 
 
     .charts .card{
-    min-height:280px;
+    min-height:220px;
+    padding:16px;
     }
 
    .grid{
@@ -1033,6 +1034,14 @@ box-shadow:
     .card{
     border-radius:20px;
     margin-bottom:16px;
+    }
+
+    .insights-card h3{
+    margin-bottom:16px;
+    }
+
+    .insight-item{
+    font-size:14px;
     }
 
     /* Quick stats */
@@ -1112,5 +1121,22 @@ box-shadow:
     .quick-pill{
     padding:8px 12px;
     font-size:13px;
+    }
+
+    .fab{
+    width:60px;
+    height:60px;
+
+    right:15px;
+    bottom:15px;
+
+    padding:0;
+
+    font-size:28px;
+    }
+
+    .activity-item{
+    padding:12px;
+    font-size:14px;
     }
 }
