@@ -979,7 +979,8 @@ box-shadow:
     }
 
    .header-btn{
-    text-align:center;
+    padding:10px 12px;
+    font-size:14px;
     }
     /* Welcome */
     .gradient-title{
@@ -1087,16 +1088,29 @@ box-shadow:
     }
 
     .search{
-    background:rgba(255,255,255,.03);
+    gap:8px;
     padding:12px;
-    border-radius:20px;
     }
 
-    .fab{
-    width:65px;
-    height:65px;
-    right:20px;
-    bottom:20px;
+    .search input,
+    .search select{
+    padding:12px;
+    font-size:14px;
     }
 
+    .search button{
+    padding:12px;
+    font-size:14px;
+    }
+
+    .search{
+    background:rgba(255,255,255,.03);
+    padding:14px;
+    border-radius:24px;
+    margin-bottom:20px;
+    }
+    .quick-pill{
+    padding:8px 12px;
+    font-size:13px;
+    }
 }
