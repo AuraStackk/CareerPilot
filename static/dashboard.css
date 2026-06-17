@@ -1142,4 +1142,10 @@ box-shadow:
     padding:12px;
     font-size:14px;
     }
+
+    .insights-card,
+    .activity-card{
+    max-height:250px;
+    overflow-y:auto;
+    }
 }
