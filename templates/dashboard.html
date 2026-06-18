@@ -189,11 +189,27 @@
     <p>{{ goal_progress }}%</p>
 
 </div>
+
+
+<button class="mobile-toggle" onclick="toggleSection('analytics')">
+    📈 Analytics
+</button>
+
+<div id="analytics" class="mobile-section">
+
 <!-- CHARTS -->
 <div class="charts">
     <div class="card"><canvas id="statusChart"></canvas></div>
     <div class="card"><canvas id="trendChart"></canvas></div>
 </div>
+
+</div>
+
+<button class="mobile-toggle" onclick="toggleSection('insights')">
+    🧠 Insights
+</button>
+
+<div id="insights" class="mobile-section">
 
 <!-- INSIGHTS -->
 
@@ -269,6 +285,8 @@
     </div>
 
     {% endif %}
+
+</div>
 
 </div>
 

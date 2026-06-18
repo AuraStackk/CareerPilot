@@ -1148,4 +1148,24 @@ box-shadow:
     max-height:250px;
     overflow-y:auto;
     }
+
+    .mobile-toggle{
+    width:100%;
+    padding:16px;
+    background:rgba(255,255,255,.05);
+    border:none;
+    border-radius:18px;
+    margin-bottom:12px;
+    color:white;
+    text-align:left;
+    font-size:16px;
+    }
+
+   .mobile-section{
+    display:none;
+    }
+
+    .mobile-section.show{
+    display:block;
+    }
 }
