@@ -272,6 +272,3 @@ function toggleSidebar() {
     document.querySelector(".sidebar").classList.toggle("show");
 }
 
-function toggleSection(id){
-    document.getElementById(id).classList.toggle("show");
-}

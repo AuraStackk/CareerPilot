@@ -965,23 +965,26 @@ box-shadow:
     .header{
     display:flex;
     flex-direction:column;
-    gap:15px;
+    gap:18px;
     margin-bottom:20px;
-
-    background:rgba(255,255,255,0.03);
-    padding:20px;
+    background:rgba(255,255,255,.03);
+    padding:18px;
     border-radius:24px;
     }
+
     .header-actions{
     display:grid;
     grid-template-columns:1fr 1fr;
+    gap:10px;
     width:100%;
     }
 
    .header-btn{
-    padding:10px 12px;
-    font-size:14px;
-    }
+   padding:12px;
+   font-size:14px;
+   text-align:center;
+   }
+
     /* Welcome */
     .gradient-title{
     font-size:22px;
@@ -994,10 +997,10 @@ box-shadow:
 
     /* Stats */
 
-    .stat-card{
-    min-height:140px;
-    padding:14px;
-    }
+   .stat-card{
+   min-height:120px;
+   padding:16px;
+   }
 
     .stat-card h2{
     font-size:24px;
@@ -1064,7 +1067,14 @@ box-shadow:
 
     /* Charts */
     .charts{
-        grid-template-columns:1fr;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    }
+
+    .charts .card{
+    min-height:240px;
+    padding:16px;
     }
 
     /* Kanban */
@@ -1078,8 +1088,8 @@ box-shadow:
     }
 
     .kanban-column{
-    flex:0 0 280px;
-    min-width:280px;
+    flex:0 0 320px;
+    min-width:320px;
     }
 
     .kanban-column h2{
@@ -1117,10 +1127,12 @@ box-shadow:
 
     .search{
     background:rgba(255,255,255,.03);
-    padding:14px;
-    border-radius:24px;
+    padding:16px;
+    border-radius:20px;
     margin-bottom:20px;
+    gap:10px;
     }
+
     .quick-pill{
     padding:8px 12px;
     font-size:13px;
@@ -1149,23 +1161,38 @@ box-shadow:
     overflow-y:auto;
     }
 
-    .mobile-toggle{
-    width:100%;
-    padding:16px;
-    background:rgba(255,255,255,.05);
-    border:none;
-    border-radius:18px;
-    margin-bottom:12px;
-    color:white;
-    text-align:left;
-    font-size:16px;
+    .mobile-info-cards{
+    display:flex;
+    overflow-x:auto;
+    gap:15px;
+    flex-wrap:nowrap;
+    scroll-snap-type:x mandatory;
+    padding-bottom:10px;
     }
 
-   .mobile-section{
-    display:none;
+    .mobile-info-cards .card{
+    flex:0 0 85%;
+    scroll-snap-align:start;
+    margin-bottom:0;
     }
 
-    .mobile-section.show{
-    display:block;
+    .progress-card{
+    margin-bottom:20px;
+   }
+
+    .activity-card{
+    overflow-y:auto;
+    max-height:300px;
     }
+
+   .quick-pill{
+   font-size:12px;
+   padding:8px 10px;
+   }
+
+   .card{
+   box-shadow:none;
+   }
+
+    
 }
