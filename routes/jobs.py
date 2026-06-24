@@ -3,9 +3,10 @@ from models import db, Job, User
 import os
 from werkzeug.utils import secure_filename
 import PyPDF2
-from flask_login import  current_user
+from PyPDF2.errors import PdfReadError
 from datetime import datetime
 import csv
+from io import StringIO
 from flask import make_response
 
 
@@ -19,6 +20,10 @@ def dashboard():
         return redirect("/login")
 
     user = User.query.get(session["user_id"])
+
+    if not user:
+        session.pop("user_id", None)
+        return redirect("/login")
 
     search = request.args.get("search")
     status = request.args.get("status")
@@ -185,20 +190,27 @@ def export_csv():
         user_id=session["user_id"]
     ).all()
 
-    output = []
-
-    output.append(
-        "Company,Role,Status,Priority,Salary,Location,Work Type\n"
+    output = StringIO()
+    writer = csv.writer(output)
+    writer.writerow(
+        ["Company", "Role", "Status", "Priority", "Salary", "Location", "Work Type"]
     )
 
     for job in jobs:
-
-        output.append(
-            f"{job.company},{job.role},{job.status},{job.priority},{job.salary},{job.location},{job.work_type}\n"
+        writer.writerow(
+            [
+                job.company,
+                job.role,
+                job.status,
+                job.priority,
+                job.salary,
+                job.location,
+                job.work_type
+            ]
         )
 
     response = make_response(
-        "".join(output)
+        output.getvalue()
     )
 
     response.headers[
@@ -281,6 +293,9 @@ def update_status(id):
     job = Job.query.get(id)
 
     # security check
+    if not job:
+        return "Job not found"
+
     if job.user_id != session["user_id"]:
         return "Unauthorized"
 
@@ -299,6 +314,9 @@ def drag_update(id):
         return "Unauthorized"
 
     job = Job.query.get(id)
+
+    if not job:
+        return "Job not found"
 
     if job.user_id != session["user_id"]:
         return "Unauthorized"
@@ -346,30 +364,52 @@ def edit_job(id):
 @jobs_bp.route("/upload-resume", methods=["GET", "POST"])
 def upload_resume():
 
+    if "user_id" not in session:
+        return redirect("/login")
+
+    user = User.query.get(session["user_id"])
+
+    if not user:
+        session.pop("user_id", None)
+        return redirect("/login")
+
     if request.method == "POST":
 
-        file = request.files["resume"]
+        file = request.files.get("resume")
 
-        if file:
+        if not file or not file.filename:
+            flash("Please choose a resume PDF to upload.")
+            return redirect("/upload-resume")
 
-            filename = secure_filename(file.filename)
+        filename = secure_filename(file.filename)
 
-            filepath = os.path.join("uploads", filename)
+        if not filename.lower().endswith(".pdf"):
+            flash("Please upload a PDF resume.")
+            return redirect("/upload-resume")
 
-            file.save(filepath)
+        filepath = os.path.join("uploads", filename)
 
-            text = ""
-        
+        os.makedirs("uploads", exist_ok=True)
+
+        file.save(filepath)
+
+        text = ""
+
+        try:
             with open(filepath, "rb") as pdf_file:
 
-             reader = PyPDF2.PdfReader(pdf_file)
+                reader = PyPDF2.PdfReader(pdf_file)
 
-             for page in reader.pages:
+                for page in reader.pages:
 
-              text += page.extract_text()
-              print(text)
+                    text += page.extract_text() or ""
+        except PdfReadError:
+            if os.path.exists(filepath):
+                os.remove(filepath)
+            flash("Could not read this PDF. Please upload a valid resume PDF.")
+            return redirect("/upload-resume")
 
-            flash("Resume uploaded successfully!")
+        flash("Resume uploaded successfully!")
 
         required_skills = [
             "Python",
@@ -479,7 +519,7 @@ def upload_resume():
             "Suggestion": suggestion
         }
 
-        current_user.resume_score = f"{score}%"
+        user.resume_score = f"{score}%"
 
         db.session.commit()
 
@@ -494,4 +534,3 @@ def upload_resume():
         "upload_resume.html",
         analysis=None
     )
-
