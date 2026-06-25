@@ -1588,6 +1588,116 @@ color:var(--text) !important;
 }
 
 }
+/* ===== MOBILE OVERRIDES FOR SCREEN WIDTH <= 380px ===== */
+@media (max-width: 380px){
+    .main{
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .quick-stats{
+        grid-template-columns:1fr;
+    }
+
+    .header-actions{
+        grid-template-columns:1fr 44px;
+    }
+
+    .header-actions .secondary-btn{
+        display:none;
+    }
+
+    .search{
+        grid-template-columns:1fr;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .charts,
+    .mobile-info-cards,
+    .kanban-board{
+        margin-left:-10px;
+        margin-right:-10px;
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .charts .card,
+    .mobile-info-cards .insights-card,
+    .mobile-info-cards .activity-card,
+    .mobile-info-cards .ai-card,
+    .kanban-column{
+        flex-basis:92%;
+        min-width:92%;
+    }
+}
+
+/* ===== FIXED MOBILE THEME SYSTEM OVERRIDES (<= 768px) ===== */
+@media (max-width: 768px){
+    /* Restore dynamic theme variable configurations on mobile */
+    :root {
+        --bg: #0b1220;
+        --panel: #111827;
+        --card: #1f2937;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --primary: #38bdf8;
+        --sidebar-bg: #0f172a;
+    }
+
+    body.light {
+        --bg: #f3f4f6;
+        --panel: #ffffff;
+        --card: #ffffff;
+        --text: #111827;
+        --muted: #6b7280;
+        --sidebar-bg: #ffffff;
+    }
+
+    body{
+        background: var(--bg) !important;
+        color: var(--text) !important;
+    }
+
+    .card,
+    .stat-card,
+    .progress-card,
+    .charts .card,
+    .mobile-info-cards .card,
+    .kanban-column,
+    .job,
+    .search{
+        background: var(--card) !important;
+        color: var(--text) !important;
+    }
+
+    .search input,
+    .search select{
+        background: var(--panel) !important;
+        color: var(--text) !important;
+        border-color: rgba(255,255,255,.08) !important;
+    }
+
+    .progress-card h3,
+    .card h3,
+    .kanban-column h2{
+        color: var(--text) !important;
+    }
+
+    .stat-card h2,
+    .stat-card p{
+        color: var(--text) !important;
+    }
+
+    .insight-item,
+    .activity-item,
+    .empty-column{
+        background: var(--panel) !important;
+        color: var(--text) !important;
+    }
+}
 }
 
 
