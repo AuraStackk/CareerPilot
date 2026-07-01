@@ -1610,6 +1610,89 @@ body:not(.light) .empty-column{
 
 }
 
+/* ===== FINAL MOBILE DARK/LIGHT FIX ===== */
+
+@media (max-width:768px){
+
+body:not(.light) .search,
+body:not(.light) .stat-card,
+body:not(.light) .progress-card,
+body:not(.light) .charts .card,
+body:not(.light) .mobile-info-cards .card,
+body:not(.light) .activity-card,
+body:not(.light) .insights-card,
+body:not(.light) .ai-card,
+body:not(.light) .kanban-column,
+body:not(.light) .job,
+body:not(.light) .card{
+
+    background:#1f2937 !important;
+    color:#f8fafc !important;
+}
+
+body.light .search,
+body.light .stat-card,
+body.light .progress-card,
+body.light .charts .card,
+body.light .mobile-info-cards .card,
+body.light .activity-card,
+body.light .insights-card,
+body.light .ai-card,
+body.light .kanban-column,
+body.light .job,
+body.light .card{
+
+    background:#ffffff !important;
+    color:#111827 !important;
+}
+
+/* Headings */
+
+body:not(.light) h1,
+body:not(.light) h2,
+body:not(.light) h3,
+body:not(.light) h4{
+    color:#ffffff !important;
+}
+
+body.light h1,
+body.light h2,
+body.light h3,
+body.light h4{
+    color:#111827 !important;
+}
+
+/* Paragraphs */
+
+body:not(.light) p,
+body:not(.light) span,
+body:not(.light) label{
+    color:#cbd5e1 !important;
+}
+
+body.light p,
+body.light span,
+body.light label{
+    color:#475569 !important;
+}
+
+/* Inputs */
+
+body:not(.light) input,
+body:not(.light) select{
+    background:#111827 !important;
+    color:white !important;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+body.light input,
+body.light select{
+    background:white !important;
+    color:#111827 !important;
+}
+
+}
+
 }
 
 
