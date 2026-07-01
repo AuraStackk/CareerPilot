@@ -1535,164 +1535,63 @@ box-shadow:
         min-width:92%;
     }
 
+}
 /* ===== MOBILE THEME FIX ===== */
 
 @media (max-width:768px){
 
-body.light .sidebar{
-    background:rgba(255,255,255,.94);
-}
-
-body:not(.light) .sidebar{
-    background:#111827;
-    border-color:rgba(255,255,255,.08);
-}
-
-body:not(.light) .sidebar h2{
-    background:#1f2937;
-}
-
-body:not(.light) .sidebar h2::after{
-    color:#38bdf8;
-}
-
-body:not(.light) .sidebar a{
-    color:#d1d5db;
-}
-
-body.light .card,
-body.light .stat-card,
-body.light .progress-card,
-body.light .kanban-column,
-body.light .job,
-body.light .search{
-    background:#ffffff;
-    color:#111827;
-}
-
-body:not(.light) .card,
-body:not(.light) .stat-card,
-body:not(.light) .progress-card,
-body:not(.light) .kanban-column,
-body:not(.light) .job,
-body:not(.light) .search{
-    background:#1f2937;
-    color:#f3f4f6;
-}
-
-body:not(.light) .stat-card p,
-body:not(.light) .job-left p,
-body:not(.light) .job-info,
-body:not(.light) .card p{
-    color:#9ca3af;
-}
-
-body:not(.light) .progress-card h3,
-body:not(.light) .card h3,
-body:not(.light) .kanban-column h2,
-body:not(.light) .job-left h3{
-    color:#ffffff;
-}
-
-body:not(.light) .search input,
-body:not(.light) .search select{
-    background:#111827;
-    color:#ffffff;
-    border:1px solid rgba(255,255,255,.08);
-}
-
-body:not(.light) .insight-item,
-body:not(.light) .activity-item,
-body:not(.light) .empty-column{
-    background:#111827;
-    color:#e5e7eb;
-}
-
-}
-
-/* ===== FINAL MOBILE DARK/LIGHT FIX ===== */
-
-@media (max-width:768px){
-
 body:not(.light) .search,
+body:not(.light) .card,
 body:not(.light) .stat-card,
 body:not(.light) .progress-card,
 body:not(.light) .charts .card,
 body:not(.light) .mobile-info-cards .card,
-body:not(.light) .activity-card,
-body:not(.light) .insights-card,
-body:not(.light) .ai-card,
 body:not(.light) .kanban-column,
-body:not(.light) .job,
-body:not(.light) .card{
+body:not(.light) .job{
 
     background:#1f2937 !important;
     color:#f8fafc !important;
 }
 
 body.light .search,
+body.light .card,
 body.light .stat-card,
 body.light .progress-card,
 body.light .charts .card,
 body.light .mobile-info-cards .card,
-body.light .activity-card,
-body.light .insights-card,
-body.light .ai-card,
 body.light .kanban-column,
-body.light .job,
-body.light .card{
+body.light .job{
 
     background:#ffffff !important;
     color:#111827 !important;
 }
 
-/* Headings */
-
-body:not(.light) h1,
-body:not(.light) h2,
-body:not(.light) h3,
-body:not(.light) h4{
-    color:#ffffff !important;
-}
-
-body.light h1,
-body.light h2,
-body.light h3,
-body.light h4{
-    color:#111827 !important;
-}
-
-/* Paragraphs */
-
-body:not(.light) p,
-body:not(.light) span,
-body:not(.light) label{
-    color:#cbd5e1 !important;
-}
-
-body.light p,
-body.light span,
-body.light label{
-    color:#475569 !important;
-}
-
-/* Inputs */
-
-body:not(.light) input,
-body:not(.light) select{
+body:not(.light) .search input,
+body:not(.light) .search select{
     background:#111827 !important;
-    color:white !important;
-    border:1px solid rgba(255,255,255,.08);
+    color:#fff !important;
+    border-color:rgba(255,255,255,.08) !important;
 }
 
-body.light input,
-body.light select{
-    background:white !important;
-    color:#111827 !important;
+body:not(.light) .insight-item,
+body:not(.light) .activity-item,
+body:not(.light) .empty-column{
+    background:#111827 !important;
+    color:#e5e7eb !important;
+}
+
+body:not(.light) .progress-card h3,
+body:not(.light) .card h3,
+body:not(.light) .kanban-column h2,
+body:not(.light) .stat-card h2{
+    color:#fff !important;
+}
+
+body:not(.light) .card p,
+body:not(.light) .stat-card p,
+body:not(.light) .job-left p,
+body:not(.light) .job-info{
+    color:#9ca3af !important;
 }
 
 }
-
-}
-
-
